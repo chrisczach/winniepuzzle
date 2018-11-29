@@ -1,9 +1,11 @@
 .board {
+  padding: 1vmin;
   position: absolute;
   top: calc((100vh - 100vmin)/2);
   left: calc((100vw - 100vmin)/2);
-  height: 100vmin;
-  width: 100vmin;
+  height: 98vmin;
+  width: 98vmin;
   background-color: #aaa;
   display: grid;
+  grid-gap: 1vmin;
 }

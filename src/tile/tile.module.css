@@ -1,4 +1,16 @@
 .tile {
   display: grid;
   overflow: hidden;
+  border-radius: 4px;
+  animation: load 1s linear both;
+  transform: translate(1);
+}
+
+@keyframes load {
+  from {
+    tranform: scale(0);
+  }
+  to {
+    tranform: scale(1);
+  }
 }

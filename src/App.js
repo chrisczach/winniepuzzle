@@ -28,13 +28,15 @@ class App extends Component {
     possibleMoves: [],
     moveHistory: [],
     boardSize: 4,
-    board: []
+    board: [],
+    openSpot: 0,
+    win: false
   
   };
 
   setTile = () => {
     this.setState(state=> {
-      return { tileSize: Math.min(window.innerHeight, window.innerWidth) / state.boardSize }
+      return { tileSize: Math.min(window.innerHeight, window.innerWidth)*.98 / state.boardSize }
     });
   };
 
@@ -43,16 +45,21 @@ class App extends Component {
       const board = [];
       for (let imageRow = 1; imageRow <= state.boardSize; imageRow++) {
         for (let imageColumn = 1; imageColumn <= state.boardSize; imageColumn++){
-          board.push({imageRow, imageColumn})
+          if (imageColumn === state.boardSize && imageRow === state.boardSize) {
+            board.push({imageRow: 'X', imageColumn: 'X'})
+          } else {
+            board.push({ imageRow, imageColumn });
+          }
+          
         }
       }
-      return {board}
+      return {board, openSpot: state.boardSize**2-1}
     })
   }
 
   updateAvailableMoves = () => {
     this.setState(state => {
-      const currIndex = state.board.indexOf('X');
+      const currIndex = state.board.findIndex(e=> e.imageRow === 'X');
       const possibleMoves = [];
       if ((currIndex + 1 )% state.boardSize !== 0) possibleMoves.push(currIndex + 1)
       if (currIndex % state.boardSize !== 0) possibleMoves.push(currIndex - 1)
@@ -62,22 +69,55 @@ class App extends Component {
     })
     
   }
+  // newGame = (numTiles, numMoves) => {
+  //   this.setState(state => {
+  //     const image = images[Math.floor(Math.random() * images.length)];
+  //     const win = false
+
+  //   })
+  // }
+
+  moveTile = (index, e) => {
+    this.setState(state => {
+      const currIndex = state.board.findIndex(e => e.imageRow === 'X')
+      if (state.possibleMoves.indexOf(index - 1) === -1) return
+      const board = state.board;
+      [board[index - 1], board[currIndex]] = [board[currIndex], board[index - 1]];
+      const moveHistory = [...state.moveHistory, currIndex];
+      return { board, moveHistory }
+    });
+    this.checkBoard();
+    this.updateAvailableMoves();
+  }
+
+  checkBoard = () => {
+    this.setState(state => {
+      let win = true;
+      state.board.forEach((e, i) => {
+        const homeIndex = ((e.imageRow - 1) * state.boardSize) + (e.imageColumn - 1);
+        if (homeIndex !== i && e.imageRow !== 'X') { win = false }
+      });
+      return { win };
+    });
+  }
 
 
   componentDidMount() {
     this.setBoard();
     this.setTile();
-    window.addEventListener('resize',this.setTile)
+    this.updateAvailableMoves();
+    window.addEventListener('resize', this.setTile);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize',this.setTile)
+    window.removeEventListener('resize', this.setTile);
+
   }
 
   render() {
     return (
       <Board gridSize={this.state.boardSize}>
-        {this.state.board.map((e, i) => <Tile {...e} image={this.state.image} boardSize={this.state.boardSize} index={i + 1} size={this.state.tileSize}/>)}
+        {this.state.board.map((e, i) => <Tile clickHandler={this.moveTile}  {...e} image={this.state.image} boardSize={this.state.boardSize} index={i + 1} size={this.state.tileSize}/>)}
       </Board>
 
     )

@@ -7,21 +7,29 @@ const Tile = props => {
   const size = props.size;
   const offSetRow = size - (size * row);
   const offSetColumn = size - (size * column);
+  const imageSize = size * props.boardSize;
   
   const image = {
     "grid-column": column.toString(),
     "grid-row": row.toString(),
     "background-image": 'url("./img/' + props.image.toString() + '")',
-    //"background-size": 
-  }
+    "background-size": imageSize.toString() + 'px ' + imageSize.toString() + 'px',
+    "background-position": offSetColumn.toString() + 'px ' + offSetRow.toString() + 'px'
+  };
+
+  const blank = {
+    "grid-column": column.toString(),
+    "grid-row": row.toString(),
+    // "background-image": 'url("./img/' + props.image.toString() + '")',
+    // "background-size": imageSize.toString() + 'px ' + imageSize.toString() + 'px',
+    // "background-position": offSetColumn.toString() + 'px ' + offSetRow.toString() + 'px'
+  };
 
   return (
-    <div style={image} className={classes.tile}>
+    <div onClick={e=> props.clickHandler(props.index, e)}  style={props.imageRow === 'X' ? blank : image} className={classes.tile}>
       imageRow: {props.imageRow}<br/>
       imageColumn: {props.imageColumn}<br/>
-      <br/>
-      offSetRow: {offSetRow}<br/>
-      offSetColumn: {offSetColumn}<br/>
+
     </div>
   )
 }
