@@ -1,0 +1,4 @@
+.tile {
+  display: grid;
+  overflow: hidden;
+}

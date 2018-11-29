@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Board from './board/board';
+import Tile from './tile/tile';
 
 //`./img/${props.item.item}`
 
@@ -21,36 +23,64 @@ const images = [
 
 class App extends Component {
   state = {
-    image: '',
+    image: 'winnie1.jpg',
     tileSize: '',
     possibleMoves: [],
     moveHistory: [],
     boardSize: 4,
-    board: [
-      [1, 2, 3, 4],
-      [5, 6, 7, 8],
-      [9, 10, 11, 12],
-      [13,14,15,'X']
-    ]
+    board: []
+  
   };
 
   setTile = () => {
-    this.setState({
-      sileSize: Math.min(window.innerHeight, window.innerWidth)
+    this.setState(state=> {
+      return { tileSize: Math.min(window.innerHeight, window.innerWidth) / state.boardSize }
     });
   };
 
+  setBoard = () => {
+    this.setState(state => {
+      const board = [];
+      for (let imageRow = 1; imageRow <= state.boardSize; imageRow++) {
+        for (let imageColumn = 1; imageColumn <= state.boardSize; imageColumn++){
+          board.push({imageRow, imageColumn})
+        }
+      }
+      return {board}
+    })
+  }
+
+  updateAvailableMoves = () => {
+    this.setState(state => {
+      const currIndex = state.board.indexOf('X');
+      const possibleMoves = [];
+      if ((currIndex + 1 )% state.boardSize !== 0) possibleMoves.push(currIndex + 1)
+      if (currIndex % state.boardSize !== 0) possibleMoves.push(currIndex - 1)
+      if (currIndex - state.boardSize >= 0) possibleMoves.push(currIndex - state.boardSize)
+      if (currIndex + state.boardSize < state.board.length) possibleMoves.push(currIndex + state.boardSize)
+      return {possibleMoves}
+    })
+    
+  }
+
+
   componentDidMount() {
+    this.setBoard();
     this.setTile();
-    window.addEventListener('resize', this.setTile);
+    window.addEventListener('resize',this.setTile)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.setTile);
+    window.removeEventListener('resize',this.setTile)
   }
 
   render() {
-    return <>test</>;
+    return (
+      <Board gridSize={this.state.boardSize}>
+        {this.state.board.map((e, i) => <Tile {...e} image={this.state.image} boardSize={this.state.boardSize} index={i + 1} size={this.state.tileSize}/>)}
+      </Board>
+
+    )
   }
 }
 
