@@ -38,7 +38,13 @@ const moveTileUtility = (state, index) => {
   const board = state.board;
   [board[index - 1], board[currIndex]] = [board[currIndex], board[index - 1]];
   const moveHistory = [...state.moveHistory, currIndex];
-  return {...state, board, moveHistory}
+
+  state = {...state, board, moveHistory}
+
+  state = checkBoardUtility(state);
+  state = updateAvailableMovesUtility(state);
+
+  return state;
 }
 
 const checkBoardUtility = (state) => {
@@ -76,7 +82,7 @@ const newGameUtility = (state,numTiles, numMoves) => {
 }
 
 const randomizeBoardUtility = (state, numMoves) => {
-  for (let i = 0; i < numMoves * 5; i++) {
+  for (let i = 0; i < numMoves * 10; i++) {
     const moves = state.possibleMoves;
     const lastMove = state.moveHistory[state.moveHistory.length - 1];
     const tile = () => {
@@ -133,8 +139,6 @@ class App extends Component {
   moveTile = (index, e) => {
     this.setState(state => {
       state = moveTileUtility(state, index);
-      state = checkBoardUtility(state);
-      state = updateAvailableMovesUtility(state);
       return state
     });
   }
