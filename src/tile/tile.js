@@ -27,8 +27,7 @@ const Tile = props => {
 
   return (
     <div onClick={e=> props.clickHandler(props.index, e)}  style={props.imageRow === 'X' ? blank : image} className={classes.tile}>
-      imageRow: {props.imageRow}<br/>
-      imageColumn: {props.imageColumn}<br/>
+
 
     </div>
   )
