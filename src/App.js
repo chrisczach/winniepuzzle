@@ -44,17 +44,23 @@ class App extends Component {
     this.setState(state => {
       const board = [];
       for (let imageRow = 1; imageRow <= state.boardSize; imageRow++) {
-        for (let imageColumn = 1; imageColumn <= state.boardSize; imageColumn++){
+        for (let imageColumn = 1; imageColumn <= state.boardSize; imageColumn++) {
           if (imageColumn === state.boardSize && imageRow === state.boardSize) {
-            board.push({imageRow: 'X', imageColumn: 'X'})
+            board.push({ imageRow: 'X', imageColumn: 'X' })
           } else {
             board.push({ imageRow, imageColumn });
           }
           
         }
       }
-      return {board, openSpot: state.boardSize**2-1}
-    })
+      return { board, openSpot: state.boardSize ** 2 - 1 }
+    }, () => {
+      this.updateAvailableMoves();
+      this.randomizeBoard(this.state.moves);
+    }
+  
+      
+    )
   }
 
   updateAvailableMoves = () => {
@@ -69,13 +75,46 @@ class App extends Component {
     })
     
   }
-  // newGame = (numTiles, numMoves) => {
-  //   this.setState(state => {
-  //     const image = images[Math.floor(Math.random() * images.length)];
-  //     const win = false
+  newGame = (numTiles, numMoves) => {
+    this.setState(
+      state => {
+        const image = images[Math.floor(Math.random() * images.length)].item;
+        const win = false;
+        const moves = numMoves;
+        const boardSize = numTiles;
+        const currGame = true;
+        return {image, win, moves, boardSize, currGame}
+      },
+      () => {
+        this.setBoard();
+        this.updateAvailableMoves();
+      }
+    );
+  };
 
-  //   })
-  // }
+  randomizeBoard = (turns) => {
+    for (let i = 0; i < turns*15; i++) {
+  
+        const moves = this.state.possibleMoves;
+        const lastMove = this.state.moveHistory[this.state.moveHistory.length - 1];
+        const tile = () => {
+          
+          if (moves[Math.floor(Math.random() * moves.length)] === lastMove) {
+            return tile()
+          } else { return moves[Math.floor(Math.random() * moves.length)] }
+        }
+        
+      this.moveTile(tile() + 1)
+
+
+
+ 
+  
+  
+
+    }
+
+  }
 
   moveTile = (index, e) => {
     this.setState(state => {
@@ -103,9 +142,8 @@ class App extends Component {
 
 
   componentDidMount() {
-    this.setBoard();
+    this.newGame(4, 3);
     this.setTile();
-    this.updateAvailableMoves();
     window.addEventListener('resize', this.setTile);
   }
 
