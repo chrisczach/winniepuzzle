@@ -21,6 +21,37 @@ const images = [
   { id: 12, item: 'winnie12.jpg' }
 ];
 
+const updateAvailableMovesUtility = (state) => {
+    const currIndex = state.board.findIndex(e=> e.imageRow === 'X');
+    const possibleMoves = [];
+    if ((currIndex + 1 )% state.boardSize !== 0) possibleMoves.push(currIndex + 1)
+    if (currIndex % state.boardSize !== 0) possibleMoves.push(currIndex - 1)
+    if (currIndex - state.boardSize >= 0) possibleMoves.push(currIndex - state.boardSize)
+    if (currIndex + state.boardSize < state.board.length) possibleMoves.push(currIndex + state.boardSize)
+    return {...state, possibleMoves}
+}
+
+const moveTileUtility = (state, index) => {
+  
+  const currIndex = state.board.findIndex(e => e.imageRow === 'X')
+  if (state.possibleMoves.indexOf(index - 1) === -1) return
+  const board = state.board;
+  [board[index - 1], board[currIndex]] = [board[currIndex], board[index - 1]];
+  const moveHistory = [...state.moveHistory, currIndex];
+  return {...state, board, moveHistory}
+}
+
+const checkBoardUtility = (state) => {
+  let win = true;
+  state.board.forEach((e, i) => {
+    const homeIndex = ((e.imageRow - 1) * state.boardSize) + (e.imageColumn - 1);
+    if (homeIndex !== i && e.imageRow !== 'X') { win = false }
+  });
+  return {...state, win};
+}
+
+
+
 class App extends Component {
   state = {
     image: 'winnie1.jpg',
@@ -54,27 +85,27 @@ class App extends Component {
         }
       }
       return { board, openSpot: state.boardSize ** 2 - 1 }
-    }, () => {
-      this.updateAvailableMoves();
-      this.randomizeBoard(this.state.moves);
-    }
-  
-      
-    )
+    })
   }
 
   updateAvailableMoves = () => {
-    this.setState(state => {
-      const currIndex = state.board.findIndex(e=> e.imageRow === 'X');
-      const possibleMoves = [];
-      if ((currIndex + 1 )% state.boardSize !== 0) possibleMoves.push(currIndex + 1)
-      if (currIndex % state.boardSize !== 0) possibleMoves.push(currIndex - 1)
-      if (currIndex - state.boardSize >= 0) possibleMoves.push(currIndex - state.boardSize)
-      if (currIndex + state.boardSize < state.board.length) possibleMoves.push(currIndex + state.boardSize)
-      return {possibleMoves}
-    })
+    this.setState(state => updateAvailableMovesUtility(state))
     
   }
+
+  moveTile = (index, e) => {
+    this.setState(state => {
+      state = moveTileUtility(state, index);
+      state = checkBoardUtility(state);
+      state = updateAvailableMovesUtility(state);
+      return state
+    });
+  }
+
+  checkBoard = () => {
+    this.setState(state=> checkBoardUtility(state));
+  }
+
   newGame = (numTiles, numMoves) => {
     this.setState(
       state => {
@@ -93,8 +124,9 @@ class App extends Component {
   };
 
   randomizeBoard = (turns) => {
-    for (let i = 0; i < turns*15; i++) {
-  
+    this.setState(state => {
+
+      for (let i = 0; i < turns * 10; i++) {
         const moves = this.state.possibleMoves;
         const lastMove = this.state.moveHistory[this.state.moveHistory.length - 1];
         const tile = () => {
@@ -103,46 +135,26 @@ class App extends Component {
             return tile()
           } else { return moves[Math.floor(Math.random() * moves.length)] }
         }
-        
-      this.moveTile(tile() + 1)
+      
+        state = moveTileUtility(state, tile() + 1);
+        state = checkBoardUtility(state);
+        state = updateAvailableMovesUtility(state);
 
+      }
 
+      return state
+    })
+  
+
+  }
 
  
-  
-  
 
-    }
 
-  }
-
-  moveTile = (index, e) => {
-    this.setState(state => {
-      const currIndex = state.board.findIndex(e => e.imageRow === 'X')
-      if (state.possibleMoves.indexOf(index - 1) === -1) return
-      const board = state.board;
-      [board[index - 1], board[currIndex]] = [board[currIndex], board[index - 1]];
-      const moveHistory = [...state.moveHistory, currIndex];
-      return { board, moveHistory }
-    });
-    this.checkBoard();
-    this.updateAvailableMoves();
-  }
-
-  checkBoard = () => {
-    this.setState(state => {
-      let win = true;
-      state.board.forEach((e, i) => {
-        const homeIndex = ((e.imageRow - 1) * state.boardSize) + (e.imageColumn - 1);
-        if (homeIndex !== i && e.imageRow !== 'X') { win = false }
-      });
-      return { win };
-    });
-  }
 
 
   componentDidMount() {
-    this.newGame(4, 3);
+    this.newGame(4, 4);
     this.setTile();
     window.addEventListener('resize', this.setTile);
   }
