@@ -50,7 +50,51 @@ const checkBoardUtility = (state) => {
   return {...state, win};
 }
 
+const setBoardUtility = (state) => {
+  const board = [];
+  for (let imageRow = 1; imageRow <= state.boardSize; imageRow++) {
+    for (let imageColumn = 1; imageColumn <= state.boardSize; imageColumn++) {
+      if (imageColumn === state.boardSize && imageRow === state.boardSize) {
+        board.push({ imageRow: 'X', imageColumn: 'X' })
+      } else {
+        board.push({ imageRow, imageColumn });
+      }
+      
+    }
+  }
+  return {...state, board, openSpot: state.boardSize ** 2 - 1 }
 
+}
+
+const newGameUtility = (state,numTiles, numMoves) => {
+  const image = images[Math.floor(Math.random() * images.length)].item;
+  const win = false;
+  const moves = numMoves;
+  const boardSize = numTiles;
+  const currGame = true;
+  return {...state, image, win, moves, boardSize, currGame}
+}
+
+const randomizeBoardUtility = (state, numMoves) => {
+  for (let i = 0; i < numMoves * 5; i++) {
+    const moves = state.possibleMoves;
+    const lastMove = state.moveHistory[state.moveHistory.length - 1];
+    const tile = () => {
+      if (moves[Math.floor(Math.random() * moves.length)] === lastMove) {
+        return tile()
+      } else { return moves[Math.floor(Math.random() * moves.length)] }
+    }
+  
+    state = moveTileUtility(state, tile() + 1);
+    state = checkBoardUtility(state);
+    state = updateAvailableMovesUtility(state);
+
+  }
+
+  return state
+
+
+}
 
 class App extends Component {
   state = {
@@ -73,18 +117,11 @@ class App extends Component {
 
   setBoard = () => {
     this.setState(state => {
-      const board = [];
-      for (let imageRow = 1; imageRow <= state.boardSize; imageRow++) {
-        for (let imageColumn = 1; imageColumn <= state.boardSize; imageColumn++) {
-          if (imageColumn === state.boardSize && imageRow === state.boardSize) {
-            board.push({ imageRow: 'X', imageColumn: 'X' })
-          } else {
-            board.push({ imageRow, imageColumn });
-          }
-          
-        }
-      }
-      return { board, openSpot: state.boardSize ** 2 - 1 }
+      state = setBoardUtility(state);
+      state = updateAvailableMovesUtility(state);
+
+
+      return state;
     })
   }
 
@@ -107,46 +144,16 @@ class App extends Component {
   }
 
   newGame = (numTiles, numMoves) => {
-    this.setState(
-      state => {
-        const image = images[Math.floor(Math.random() * images.length)].item;
-        const win = false;
-        const moves = numMoves;
-        const boardSize = numTiles;
-        const currGame = true;
-        return {image, win, moves, boardSize, currGame}
-      },
-      () => {
-        this.setBoard();
-        this.updateAvailableMoves();
-      }
-    );
+    this.setState(state => {
+      state = newGameUtility(state, numTiles, numMoves);
+      state = setBoardUtility(state);
+      state = updateAvailableMovesUtility(state);
+      state = randomizeBoardUtility(state, numMoves);
+      return state
+      });
   };
 
-  randomizeBoard = (turns) => {
-    this.setState(state => {
 
-      for (let i = 0; i < turns * 10; i++) {
-        const moves = this.state.possibleMoves;
-        const lastMove = this.state.moveHistory[this.state.moveHistory.length - 1];
-        const tile = () => {
-          
-          if (moves[Math.floor(Math.random() * moves.length)] === lastMove) {
-            return tile()
-          } else { return moves[Math.floor(Math.random() * moves.length)] }
-        }
-      
-        state = moveTileUtility(state, tile() + 1);
-        state = checkBoardUtility(state);
-        state = updateAvailableMovesUtility(state);
-
-      }
-
-      return state
-    })
-  
-
-  }
 
  
 
