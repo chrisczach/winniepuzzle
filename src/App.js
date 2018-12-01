@@ -174,7 +174,7 @@ class App extends Component {
       state = setBoardUtility(state);
       state = updateAvailableMovesUtility(state);
       state = randomizeBoardUtility(state, state.level);
-      state = setTile(state);
+      state = setTileUtility(state);
       return state;
     });
   };
