@@ -82,10 +82,9 @@ const setBoardUtility = state => {
 };
 
 const setTileUtility = state => {
-  return {
-    tileSize:
-      (Math.min(window.innerHeight, window.innerWidth) * 0.98) / state.boardSize
-  };
+  const tileSize = (Math.min(window.innerHeight, window.innerWidth) * 0.98) / state.boardSize
+  return { ...state, tileSize }
+    
 };
 
 const newGameUtility = (state, numTiles, level) => {
