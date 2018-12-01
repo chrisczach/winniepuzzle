@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "71f5808d9d49f2cebbb2",
+    "revision": "1ea838bd07886647a48a",
     "url": "/winniepuzzle/static/css/main.c23e8331.chunk.css"
   },
   {
-    "revision": "71f5808d9d49f2cebbb2",
-    "url": "/winniepuzzle/static/js/main.71f5808d.chunk.js"
+    "revision": "1ea838bd07886647a48a",
+    "url": "/winniepuzzle/static/js/main.1ea838bd.chunk.js"
   },
   {
     "revision": "ef126df778917edafc5e",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/winniepuzzle/static/js/runtime~main.ce36a176.js"
   },
   {
-    "revision": "eee74444456b5ec90807dbe68a91dbd6",
+    "revision": "3b09d89454793e02c2373c86fe9a0ff8",
     "url": "/winniepuzzle/index.html"
   }
 ];
