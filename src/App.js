@@ -96,7 +96,7 @@ const newGameUtility = (state, numTiles, level) => {
 };
 
 const randomizeBoardUtility = (state, level) => {
-  for (let i = 0; i < level * 10; i++) {
+  for (let i = 0; i < level * 15; i++) {
     const moves = state.possibleMoves;
     const lastMove = state.moveHistory[state.moveHistory.length - 1];
     const tile = () => {
