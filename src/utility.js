@@ -17,8 +17,9 @@ export function moveTileUtility (state, index) {
   const board = state.board;
   [board[index - 1], board[currIndex]] = [board[currIndex], board[index - 1]];
   const moveHistory = [...state.moveHistory, currIndex];
-
-  state = { ...state, board, moveHistory };
+  const direction = index === currIndex ? 'right' : index - 2 === currIndex ? 'left': index > currIndex ? 'up' : 'down';
+  const lastMove = { tileIndex: index, direction };
+  state = { ...state, board, moveHistory, lastMove };
   state = updateAvailableMovesUtility(state);
 
   return state;

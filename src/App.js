@@ -119,7 +119,8 @@ class App extends Component {
                 image={this.state.image}
                 boardSize={this.state.boardSize}
                 index={i + 1}
-                size={this.state.tileSize}
+              size={this.state.tileSize}
+              lastMove={this.state.lastMove}
               />
             ))}
         </Board>

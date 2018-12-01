@@ -2,15 +2,61 @@
   display: grid;
   overflow: hidden;
   border-radius: 4px;
-  animation: load 1s linear both;
-  transform: translate(1);
 }
 
-@keyframes load {
-  from {
-    tranform: scale(0);
-  }
+
+.up {
+  animation: up .3s ease-out both;  
+}
+
+.down {
+  animation: down .3s ease-out both;  
+}
+
+.left {
+  animation: left .3s ease-out both;  
+}
+
+.right {
+  animation: right .3s ease-out both;  
+}
+
+@keyframes up {
+from {
+  transform: translateY(100%);
+  filter: blur(20px);
+}
   to {
-    tranform: scale(1);
+    transform: translateY(0);
   }
 }
+
+@keyframes down {
+  from {
+    transform: translateY(-100%);
+    filter: blur(20px);
+  }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes right {
+    from {
+      transform: translateX(-100%);
+      filter: blur(20px);
+    }
+      to {
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes left {
+      from {
+        transform: translateX(100%);
+        filter: blur(20px);
+      }
+        to {
+          transform: translateX(0);
+        }
+      }
