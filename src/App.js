@@ -151,6 +151,10 @@ class App extends Component {
     });
   };
 
+  reset = () => {
+    this.setState({level: 1,boardSize: 4,currGame: false, win: false})
+  }
+
   checkBoard = () => {
     this.setState(state => checkBoardUtility(state));
   };
@@ -178,7 +182,7 @@ class App extends Component {
   render() {
     return (
       <div className={classes.main}>
-        <div className={classes.reset}>Reset</div>
+        <div onClick={this.reset} className={classes.reset}>Reset</div>
         <Splash
           setOptions={this.setOptions}
           level={this.state.level}

@@ -79,7 +79,7 @@ h3 {
   color: white;
   font-size: 8vmin;
   font-weight: 200;
-  margin: 2vmin;
+  margin: 0 2vmin;
   height: 20vmin;
   width: 15vmin;
   border-radius: 3px;
@@ -109,7 +109,7 @@ h3 {
     }
 
     .start {  
-      margin-top: 2.5vmin;
+      margin-top: 5vmin;
       font-size: 3.5vmin;
       height: 6vmin;
     }
@@ -122,11 +122,7 @@ h3 {
 
 .display {
   color: #555;
-  font-size: 8vmin;
   font-weight: 100;
-  margin: 2vmin;
-  height: 20vmin;
-  width: 20vmin;
   border-radius: 3px;
   background-color: white;
   display: inline-flex;
@@ -134,6 +130,16 @@ h3 {
   align-items: center;
   box-shadow: 0 0 10px #777 inset;
   border: 1px solid #aaa;
+}
+
+@media(orientation: portrait) {
+
+  .display{
+    font-size: 8vmin;
+    margin: 0 2vmin;
+    height: 20vmin;
+    width: 20vmin;
+  }
 }
 
 .up {

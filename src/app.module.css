@@ -1,8 +1,10 @@
 .main {
+  position: relative;
   background-color: rgb(209, 181, 185);
   width: 100vw;
   height: 100vh;
 }
+
 
 .reset {
   width: 12vmin;;
@@ -12,3 +14,10 @@
   font-size: 3vmin;
   padding: 1vmin;
 }
+
+@media(orientation: portait) {
+.reset {
+font-size: 6vmin;
+}
+}
+
