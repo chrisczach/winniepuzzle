@@ -24,7 +24,7 @@
 @keyframes up {
 from {
   transform: translateY(100%);
-  filter: blur(20px);
+  filter: blur(6px);
 }
   to {
     transform: translateY(0);
@@ -34,7 +34,7 @@ from {
 @keyframes down {
   from {
     transform: translateY(-100%);
-    filter: blur(20px);
+    filter: blur(6px);
   }
     to {
       transform: translateY(0);
@@ -44,7 +44,7 @@ from {
   @keyframes right {
     from {
       transform: translateX(-100%);
-      filter: blur(20px);
+      filter: blur(6px);
     }
       to {
         transform: translateX(0);
@@ -54,7 +54,7 @@ from {
     @keyframes left {
       from {
         transform: translateX(100%);
-        filter: blur(20px);
+        filter: blur(6px);
       }
         to {
           transform: translateX(0);
