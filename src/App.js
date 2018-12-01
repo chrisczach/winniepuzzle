@@ -36,7 +36,7 @@ const updateAvailableMovesUtility = state => {
 
 const moveTileUtility = (state, index) => {
   const currIndex = state.board.findIndex(e => e.imageRow === 'X');
-  if (state.possibleMoves.indexOf(index - 1) === -1) return;
+  if (state.possibleMoves.indexOf(index - 1) === -1) return state;
   const board = state.board;
   [board[index - 1], board[currIndex]] = [board[currIndex], board[index - 1]];
   const moveHistory = [...state.moveHistory, currIndex];
