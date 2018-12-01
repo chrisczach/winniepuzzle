@@ -6,19 +6,19 @@
 
 
 .up {
-  animation: up .3s ease-out both;  
+  animation: up .45s cubic-bezier(0.175, 0.885, 0.32, 1.15) both;  
 }
 
 .down {
-  animation: down .3s ease-out both;  
+  animation: down .45s cubic-bezier(0.175, 0.885, 0.32, 1.15) both;  
 }
 
 .left {
-  animation: left .3s ease-out both;  
+  animation: left .45s cubic-bezier(0.175, 0.885, 0.32, 1.15) both;  
 }
 
 .right {
-  animation: right .3s ease-out both;  
+  animation: right .45s cubic-bezier(0.175, 0.885, 0.32, 1.15) both;  
 }
 
 @keyframes up {

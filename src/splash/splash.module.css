@@ -1,20 +1,22 @@
 .splash {
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
   position: fixed;
-  top: 0;
+  top: -20vh;
   background-color: rgb(209, 181, 185);
   z-index: 100;
   transform: translateY(-100vh);
-  transition: all .7s ease-in-out;
+  transition: all .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .shown {
   transform: translateY(0);
+  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) .3s;
 }
 
 h1 {
   margin: 0;
+  margin-top: 8vh;
   font-family: sans-serif;
   font-size: 10vmin;
   font-weight: 100;
