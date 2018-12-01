@@ -56,7 +56,9 @@ const checkBoardUtility = state => {
       win = false;
     }
   });
-  if (win) {currGame = false;}
+  if (win) {
+    currGame = false;
+  }
   return { ...state, win, currGame };
 };
 
@@ -76,6 +78,13 @@ const setBoardUtility = state => {
     board,
     openSpot: state.boardSize ** 2 - 1,
     moveHistory: []
+  };
+};
+
+const setTileUtility = state => {
+  return {
+    tileSize:
+      (Math.min(window.innerHeight, window.innerWidth) * 0.98) / state.boardSize
   };
 };
 
@@ -115,19 +124,19 @@ class App extends Component {
 
   setOptions = (incLevel, incBoardSize) => {
     this.setState(state => {
-      const level = Math.min(Math.max(state.level + incLevel, 1),10);
-      const boardSize = Math.min(Math.max(state.boardSize + incBoardSize,3),10);
-      return {...state, level, boardSize}
-    })
-  }
+      const level = Math.min(Math.max(state.level + incLevel, 1), 10);
+      const boardSize = Math.min(
+        Math.max(state.boardSize + incBoardSize, 3),
+        10
+      );
+      return { ...state, level, boardSize };
+    });
+  };
 
   setTile = () => {
     this.setState(state => {
-      return {
-        tileSize:
-          (Math.min(window.innerHeight, window.innerWidth) * 0.98) /
-          state.boardSize
-      };
+      state = setTileUtility(state);
+      return state;
     });
   };
 
@@ -152,8 +161,8 @@ class App extends Component {
   };
 
   reset = () => {
-    this.setState({level: 1,boardSize: 4,currGame: false, win: false})
-  }
+    this.setState({ level: 1, boardSize: 4, currGame: false, win: false });
+  };
 
   checkBoard = () => {
     this.setState(state => checkBoardUtility(state));
@@ -165,6 +174,7 @@ class App extends Component {
       state = setBoardUtility(state);
       state = updateAvailableMovesUtility(state);
       state = randomizeBoardUtility(state, state.level);
+      state = setTile(state);
       return state;
     });
   };
@@ -182,7 +192,9 @@ class App extends Component {
   render() {
     return (
       <div className={classes.main}>
-        <div onClick={this.reset} className={classes.reset}>Reset</div>
+        <div onClick={this.reset} className={classes.reset}>
+          Reset
+        </div>
         <Splash
           setOptions={this.setOptions}
           level={this.state.level}
