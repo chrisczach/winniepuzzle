@@ -3,6 +3,7 @@ import Board from './board/board';
 import Tile from './tile/tile';
 import Splash from './splash/splash';
 import classes from './app.module.css';
+import * as utility from './utility';
 
 //`./img/${props.item.item}`
 
@@ -20,98 +21,6 @@ const images = [
   { id: 11, item: 'winnie11.jpg' },
   { id: 12, item: 'winnie12.jpg' }
 ];
-
-const updateAvailableMovesUtility = state => {
-  const currIndex = state.board.findIndex(e => e.imageRow === 'X');
-  const possibleMoves = [];
-  if ((currIndex + 1) % state.boardSize !== 0)
-    possibleMoves.push(currIndex + 1);
-  if (currIndex % state.boardSize !== 0) possibleMoves.push(currIndex - 1);
-  if (currIndex - state.boardSize >= 0)
-    possibleMoves.push(currIndex - state.boardSize);
-  if (currIndex + state.boardSize < state.board.length)
-    possibleMoves.push(currIndex + state.boardSize);
-  return { ...state, possibleMoves };
-};
-
-const moveTileUtility = (state, index) => {
-  const currIndex = state.board.findIndex(e => e.imageRow === 'X');
-  if (state.possibleMoves.indexOf(index - 1) === -1) return state;
-  const board = state.board;
-  [board[index - 1], board[currIndex]] = [board[currIndex], board[index - 1]];
-  const moveHistory = [...state.moveHistory, currIndex];
-
-  state = { ...state, board, moveHistory };
-  state = updateAvailableMovesUtility(state);
-
-  return state;
-};
-
-const checkBoardUtility = state => {
-  let win = true;
-  let currGame = state.currGame;
-  state.board.forEach((e, i) => {
-    const homeIndex = (e.imageRow - 1) * state.boardSize + (e.imageColumn - 1);
-    if (homeIndex !== i && e.imageRow !== 'X') {
-      win = false;
-    }
-  });
-  if (win) {
-    currGame = false;
-  }
-  return { ...state, win, currGame };
-};
-
-const setBoardUtility = state => {
-  const board = [];
-  for (let imageRow = 1; imageRow <= state.boardSize; imageRow++) {
-    for (let imageColumn = 1; imageColumn <= state.boardSize; imageColumn++) {
-      if (imageColumn === state.boardSize && imageRow === state.boardSize) {
-        board.push({ imageRow: 'X', imageColumn: 'X' });
-      } else {
-        board.push({ imageRow, imageColumn });
-      }
-    }
-  }
-  return {
-    ...state,
-    board,
-    openSpot: state.boardSize ** 2 - 1,
-    moveHistory: []
-  };
-};
-
-const setTileUtility = state => {
-  const tileSize = (Math.min(window.innerHeight, window.innerWidth) * 0.98) / state.boardSize
-  return { ...state, tileSize }
-    
-};
-
-const newGameUtility = (state, numTiles, level) => {
-  const image = images[Math.floor(Math.random() * images.length)].item;
-  const win = false;
-  const boardSize = numTiles;
-  const currGame = true;
-  return { ...state, image, win, level, boardSize, currGame };
-};
-
-const randomizeBoardUtility = (state, level) => {
-  for (let i = 0; i < level * 15; i++) {
-    const moves = state.possibleMoves;
-    const lastMove = state.moveHistory[state.moveHistory.length - 1];
-    const tile = () => {
-      if (moves[Math.floor(Math.random() * moves.length)] === lastMove) {
-        return tile();
-      } else {
-        return moves[Math.floor(Math.random() * moves.length)];
-      }
-    };
-
-    state = moveTileUtility(state, tile() + 1);
-  }
-
-  return state;
-};
 
 class App extends Component {
   state = {
@@ -134,27 +43,27 @@ class App extends Component {
 
   setTile = () => {
     this.setState(state => {
-      state = setTileUtility(state);
+      state = utility.setTileUtility(state);
       return state;
     });
   };
 
   setBoard = () => {
     this.setState(state => {
-      state = setBoardUtility(state);
-      state = updateAvailableMovesUtility(state);
+      state = utility.setBoardUtility(state);
+      state = utility.updateAvailableMovesUtility(state);
       return state;
     });
   };
 
   updateAvailableMoves = () => {
-    this.setState(state => updateAvailableMovesUtility(state));
+    this.setState(state => utility.updateAvailableMovesUtility(state));
   };
 
   moveTile = (index, e) => {
     this.setState(state => {
-      state = moveTileUtility(state, index);
-      state = checkBoardUtility(state);
+      state = utility.moveTileUtility(state, index);
+      state = utility.checkBoardUtility(state);
       return state;
     });
   };
@@ -164,22 +73,21 @@ class App extends Component {
   };
 
   checkBoard = () => {
-    this.setState(state => checkBoardUtility(state));
+    this.setState(state => utility.checkBoardUtility(state));
   };
 
   newGame = () => {
     this.setState(state => {
-      state = newGameUtility(state, state.boardSize, state.level);
-      state = setBoardUtility(state);
-      state = updateAvailableMovesUtility(state);
-      state = randomizeBoardUtility(state, state.level);
-      state = setTileUtility(state);
+      state = utility.newGameUtility(state, state.boardSize, state.level, images);
+      state = utility.setBoardUtility(state);
+      state = utility.updateAvailableMovesUtility(state);
+      state = utility.randomizeBoardUtility(state, state.level);
+      state = utility.setTileUtility(state);
       return state;
     });
   };
 
   componentDidMount() {
-    //this.newGame(this.state.boardSize, this.state.moves);
     this.setTile();
     window.addEventListener('resize', this.setTile);
   }
