@@ -3,3 +3,12 @@
   width: 100vw;
   height: 100vh;
 }
+
+.reset {
+  width: 12vmin;;
+  text-align: center;
+  color: white;
+  background-color: #888;
+  font-size: 3vmin;
+  padding: 1vmin;
+}

@@ -17,18 +17,18 @@ const Splash = props => {
 
           <h3>Select Level</h3>
           <div>
-            <div className={classes.incButton} onClick={levelUp}>&uarr;</div>
+            <div className={`${classes.incButton} ${classes.up}`} onClick={levelUp}>&nbsp; </div>
             <div className={classes.display}>{props.level}</div>
-            <div className={classes.incButton} onClick={levelDown}>&darr;</div>
+            <div className={`${classes.incButton} ${classes.down}`} onClick={levelDown}>&nbsp; </div>
           </div>
 
           <h3>Select Grid Size</h3>
           <div>
-            <div className={classes.incButton} onClick={sizeUp}>&uarr;</div>
+            <div className={`${classes.incButton} ${classes.up}`} onClick={sizeUp}>&nbsp; </div>
             <div className={classes.display}>{props.boardSize}</div>
-            <div className={classes.incButton} onClick={sizeDown}>&darr;</div>
+            <div className={`${classes.incButton} ${classes.down}`} onClick={sizeDown}>&nbsp;</div>
           </div>
-          <div onClick={props.newGame} className={classes.start}>Start a New Game &rarr;</div>
+          <div onClick={props.newGame} className={classes.start}>Start Game &rarr;</div>
         </div>
       
       </div>

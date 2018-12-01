@@ -178,6 +178,7 @@ class App extends Component {
   render() {
     return (
       <div className={classes.main}>
+        <div className={classes.reset}>Reset</div>
         <Splash
           setOptions={this.setOptions}
           level={this.state.level}
