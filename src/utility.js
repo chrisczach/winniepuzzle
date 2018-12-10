@@ -65,16 +65,15 @@ export function setTileUtility (state) {
     
 };
 
-export function newGameUtility (state, numTiles, level, images) {
+export function newGameUtility (state, images) {
   const image = images[Math.floor(Math.random() * images.length)].item;
   const win = false;
-  const boardSize = numTiles;
   const currGame = true;
-  return { ...state, image, win, level, boardSize, currGame };
+  return { ...state, image, win , currGame };
 };
 
-export function randomizeBoardUtility (state, level) {
-  for (let i = 0; i < level * 15; i++) {
+export function randomizeBoardUtility (state) {
+  for (let i = 0; i < state.level * 15; i++) {
     const moves = state.possibleMoves;
     const lastMove = state.moveHistory[state.moveHistory.length - 1];
     const tile = () => {

@@ -78,10 +78,10 @@ class App extends Component {
 
   newGame = () => {
     this.setState(state => {
-      state = utility.newGameUtility(state, state.boardSize, state.level, images);
+      state = utility.newGameUtility(state, images);
       state = utility.setBoardUtility(state);
       state = utility.updateAvailableMovesUtility(state);
-      state = utility.randomizeBoardUtility(state, state.level);
+      state = utility.randomizeBoardUtility(state);
       state = utility.setTileUtility(state);
       return state;
     });
@@ -119,8 +119,8 @@ class App extends Component {
                 image={this.state.image}
                 boardSize={this.state.boardSize}
                 index={i + 1}
-              size={this.state.tileSize}
-              lastMove={this.state.lastMove}
+                size={this.state.tileSize}
+                lastMove={this.state.lastMove}
               />
             ))}
         </Board>
