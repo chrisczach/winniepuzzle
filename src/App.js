@@ -42,10 +42,7 @@ class App extends Component {
   };
 
   setTile = () => {
-    this.setState(state => {
-      state = utility.setTileUtility(state);
-      return state;
-    });
+    this.setState(utility.setTileUtility);
   };
 
   setBoard = () => {
@@ -54,10 +51,6 @@ class App extends Component {
       state = utility.updateAvailableMovesUtility(state);
       return state;
     });
-  };
-
-  updateAvailableMoves = () => {
-    this.setState(state => utility.updateAvailableMovesUtility(state));
   };
 
   moveTile = (index, e) => {
@@ -73,7 +66,7 @@ class App extends Component {
   };
 
   checkBoard = () => {
-    this.setState(state => utility.checkBoardUtility(state));
+    this.setState(utility.checkBoardUtility);
   };
 
   newGame = () => {

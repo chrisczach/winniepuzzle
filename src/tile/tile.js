@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classes from './tile.module.css';
 
 const Tile = props => {
@@ -11,9 +11,7 @@ const Tile = props => {
   const offSetRow = size - size * props.imageRow;
   const offSetColumn = size - size * props.imageColumn;
   const imageSize = size * props.boardSize;
-
   const direction = props.lastMove.direction;
-
   let last = props.lastMove.tileIndex;
   if (direction === 'up') {
     last -= props.boardSize;
@@ -25,8 +23,6 @@ const Tile = props => {
     last++;
   }
   const styleToAdd = last === props.index && direction;
-
-    
   const image = {
     'grid-column': column.toString(),
     'grid-row': row.toString(),
@@ -34,25 +30,18 @@ const Tile = props => {
     'background-size':
       imageSize.toString() + 'px ' + imageSize.toString() + 'px',
     'background-position':
-      offSetColumn.toString() + 'px ' + offSetRow.toString() + 'px',
+      offSetColumn.toString() + 'px ' + offSetRow.toString() + 'px'
   };
-
   const blank = {
     'grid-column': column.toString(),
     'grid-row': row.toString()
   };
-
-
   return (
     <div
       onClick={e => props.clickHandler(props.index, e)}
       style={props.imageRow === 'X' ? blank : image}
       className={`${classes.tile} ${classes[styleToAdd]}`}
-    >
-
- 
-
-    </div>
+    />
   );
 };
 
