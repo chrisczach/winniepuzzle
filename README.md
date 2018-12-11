@@ -1,8 +1,8 @@
-##`Replace Images`
+## `Replace Images`
 To add custom images, save them into the public/img folder then add the file name to the images array in App.js file. Images should have a 1 X 1 aspect ratio.
 
 
-##`Available Scripts`
+## `Available Scripts`
 In the project directory, you can run the following scripts:
 
 ### `npm start`
