@@ -8,18 +8,18 @@ import * as utility from './utility';
 //`./img/${props.item.item}`
 
 const images = [
-  { id: 1, item: 'winnie1.jpg' },
-  { id: 2, item: 'winnie2.jpg' },
-  { id: 3, item: 'winnie3.jpg' },
-  { id: 4, item: 'winnie4.jpg' },
-  { id: 5, item: 'winnie5.jpg' },
-  { id: 6, item: 'winnie6.jpg' },
-  { id: 7, item: 'winnie7.jpg' },
-  { id: 8, item: 'winnie8.jpg' },
-  { id: 9, item: 'winnie9.jpg' },
-  { id: 10, item: 'winnie10.jpg' },
-  { id: 11, item: 'winnie11.jpg' },
-  { id: 12, item: 'winnie12.jpg' }
+  'winnie1.jpg' ,
+  'winnie2.jpg',
+  'winnie3.jpg',
+  'winnie4.jpg',
+  'winnie5.jpg',
+  'winnie6.jpg',
+  'winnie7.jpg',
+  'winnie8.jpg',
+  'winnie9.jpg',
+  'winnie10.jpg',
+  'winnie11.jpg',
+  'winnie12.jpg'
 ];
 
 class App extends Component {

@@ -66,7 +66,7 @@ export function setTileUtility (state) {
 };
 
 export function newGameUtility (state, images) {
-  const image = images[Math.floor(Math.random() * images.length)].item;
+  const image = images[Math.floor(Math.random() * images.length)];
   const win = false;
   const currGame = true;
   return { ...state, image, win , currGame };
