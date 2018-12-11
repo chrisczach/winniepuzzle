@@ -117,6 +117,13 @@ class App extends Component {
               />
             ))}
         </Board>
+        <a
+          className={classes.source}
+          href="https://github.com/chrisczach/winniepuzzle"
+          target="blank"
+        >
+          Source Code
+        </a>
       </div>
     );
   }
