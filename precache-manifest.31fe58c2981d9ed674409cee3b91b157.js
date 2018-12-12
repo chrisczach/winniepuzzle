@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/winniepuzzle/static/js/runtime~main.ce36a176.js"
   },
   {
-    "revision": "a2af66fcf855691db7b6",
-    "url": "/winniepuzzle/static/js/main.a2af66fc.chunk.js"
+    "revision": "98e5baf31ac24ac95a13",
+    "url": "/winniepuzzle/static/js/main.98e5baf3.chunk.js"
   },
   {
     "revision": "4182652c5cf8d6503a34",
     "url": "/winniepuzzle/static/js/1.4182652c.chunk.js"
   },
   {
-    "revision": "a2af66fcf855691db7b6",
+    "revision": "98e5baf31ac24ac95a13",
     "url": "/winniepuzzle/static/css/main.e1a4615d.chunk.css"
   },
   {
-    "revision": "4aa5ecfe23d88e72afa6c18ea697cd2c",
+    "revision": "434efdc560aa29c3d43e4a3c350c893e",
     "url": "/winniepuzzle/index.html"
   }
 ];
