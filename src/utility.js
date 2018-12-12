@@ -106,8 +106,9 @@ export function showInstallUtility() {
   // } else {
   //   return false
   // }
-  const iPhone = /iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase() ) ? 'is iphone ' : 'is not iphone ';
-  const isStandalone = window.navigator.standalone ? 'is standalone' : 'is in browser'
-  return [iPhone, isStandalone]
+  const iPhone = /iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase() );
+  const isStandalone = window.navigator.standalone ;
+  const showInstall = iPhone && !isStandalone;
+  return showInstall
   
 }
