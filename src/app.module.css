@@ -1,6 +1,6 @@
 .main {
   position: relative;
-  background-image: linear-gradient(to bottom right,rgb(125, 207, 182) 0%,rgb(0, 178, 202) 50%, rgb(125, 207, 182) 100%);
+  background-image: linear-gradient(to bottom right,rgb(125, 207, 182) 50%,rgba(0, 178, 202,.3) 75%, rgb(125, 207, 182) 100%);
   width: 100vw;
   height: 100vh;
 }
