@@ -1,4 +1,4 @@
-export function updateAvailableMovesUtility (state) {
+export function updateAvailableMovesUtility(state) {
   const currIndex = state.board.findIndex(e => e.imageRow === 'X');
   const possibleMoves = [];
   if ((currIndex + 1) % state.boardSize !== 0)
@@ -9,23 +9,30 @@ export function updateAvailableMovesUtility (state) {
   if (currIndex + state.boardSize < state.board.length)
     possibleMoves.push(currIndex + state.boardSize);
   return { ...state, possibleMoves };
-};
+}
 
-export function moveTileUtility (state, index) {
+export function moveTileUtility(state, index) {
   const currIndex = state.board.findIndex(e => e.imageRow === 'X');
   if (state.possibleMoves.indexOf(index - 1) === -1) return state;
   const board = state.board;
   [board[index - 1], board[currIndex]] = [board[currIndex], board[index - 1]];
   const moveHistory = [...state.moveHistory, currIndex];
-  const direction = index === currIndex ? 'right' : index - 2 === currIndex ? 'left': index > currIndex ? 'up' : 'down';
+  const direction =
+    index === currIndex
+      ? 'right'
+      : index - 2 === currIndex
+      ? 'left'
+      : index > currIndex
+      ? 'up'
+      : 'down';
   const lastMove = { tileIndex: index, direction };
   state = { ...state, board, moveHistory, lastMove };
   state = updateAvailableMovesUtility(state);
 
   return state;
-};
+}
 
-export function checkBoardUtility (state) {
+export function checkBoardUtility(state) {
   let win = true;
   let currGame = state.currGame;
   state.board.forEach((e, i) => {
@@ -38,9 +45,9 @@ export function checkBoardUtility (state) {
     currGame = false;
   }
   return { ...state, win, currGame };
-};
+}
 
-export function setBoardUtility (state) {
+export function setBoardUtility(state) {
   const board = [];
   for (let imageRow = 1; imageRow <= state.boardSize; imageRow++) {
     for (let imageColumn = 1; imageColumn <= state.boardSize; imageColumn++) {
@@ -57,22 +64,22 @@ export function setBoardUtility (state) {
     openSpot: state.boardSize ** 2 - 1,
     moveHistory: []
   };
-};
+}
 
-export function setTileUtility (state) {
-  const tileSize = (Math.min(window.innerHeight, window.innerWidth) * 0.98) / state.boardSize
-  return { ...state, tileSize }
-    
-};
+export function setTileUtility(state) {
+  const tileSize =
+    (Math.min(window.innerHeight, window.innerWidth) * 0.98) / state.boardSize;
+  return { ...state, tileSize };
+}
 
-export function newGameUtility (state, images) {
+export function newGameUtility(state, images) {
   const image = images[Math.floor(Math.random() * images.length)];
   const win = false;
   const currGame = true;
-  return { ...state, image, win , currGame };
-};
+  return { ...state, image, win, currGame };
+}
 
-export function randomizeBoardUtility (state) {
+export function randomizeBoardUtility(state) {
   for (let i = 0; i < state.level * 15; i++) {
     const moves = state.possibleMoves;
     const lastMove = state.moveHistory[state.moveHistory.length - 1];
@@ -88,16 +95,19 @@ export function randomizeBoardUtility (state) {
   }
 
   return state;
-};
+}
 
 // Checks if should display install popup notification:
-export function showInstallUtility () {
+export function showInstallUtility() {
   console.log(window.navigator.userAgent.toLowerCase());
   console.log(window.navigator);
-  if (/iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase()) && !('standalone' in window.navigator) && !(window.navigator.standalone)) {
-   return true
-  } else {
-    return false
-  }
-
+  // if (/iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase()) && !('standalone' in window.navigator) && !(window.navigator.standalone)) {
+  //  return true
+  // } else {
+  //   return false
+  // }
+  const iPhone = /iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase() ) ? 'is iphone ' : 'is not iphone ';
+  const isStandalone = window.navigator.standalone ? 'is standalone' : 'is in browser'
+  return [iPhone, isStandalone]
+  
 }
