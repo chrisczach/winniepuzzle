@@ -1,13 +1,13 @@
 {
-  "main.css": "/winniepuzzle/static/css/main.3c47b2c1.chunk.css",
-  "main.js": "/winniepuzzle/static/js/main.c049b741.chunk.js",
-  "main.js.map": "/winniepuzzle/static/js/main.c049b741.chunk.js.map",
+  "main.css": "/winniepuzzle/static/css/main.ade4cc0e.chunk.css",
+  "main.js": "/winniepuzzle/static/js/main.be58a426.chunk.js",
+  "main.js.map": "/winniepuzzle/static/js/main.be58a426.chunk.js.map",
   "static/js/1.4182652c.chunk.js": "/winniepuzzle/static/js/1.4182652c.chunk.js",
   "static/js/1.4182652c.chunk.js.map": "/winniepuzzle/static/js/1.4182652c.chunk.js.map",
   "runtime~main.js": "/winniepuzzle/static/js/runtime~main.ce36a176.js",
   "runtime~main.js.map": "/winniepuzzle/static/js/runtime~main.ce36a176.js.map",
-  "static/css/main.3c47b2c1.chunk.css.map": "/winniepuzzle/static/css/main.3c47b2c1.chunk.css.map",
+  "static/css/main.ade4cc0e.chunk.css.map": "/winniepuzzle/static/css/main.ade4cc0e.chunk.css.map",
   "index.html": "/winniepuzzle/index.html",
-  "precache-manifest.bf44438ad82baea7693537f7ec61ab28.js": "/winniepuzzle/precache-manifest.bf44438ad82baea7693537f7ec61ab28.js",
+  "precache-manifest.3dd6766ea4ccdcdbd38efb6c1cb624d7.js": "/winniepuzzle/precache-manifest.3dd6766ea4ccdcdbd38efb6c1cb624d7.js",
   "service-worker.js": "/winniepuzzle/service-worker.js"
 }
