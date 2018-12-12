@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/winniepuzzle/static/css/main.aa562ed4.chunk.css"
   },
   {
-    "revision": "dd94e6033bef3d051b3cb25cc8792221",
+    "revision": "bddb44888f9b8403dcccdcc0d5182e5b",
     "url": "/winniepuzzle/index.html"
   }
 ];
