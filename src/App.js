@@ -81,6 +81,12 @@ class App extends Component {
     });
   };
 
+  closePopup=()=>{
+    this.setState(state=>{
+      return {...state, showInstall: false}
+    })
+  }
+
   componentDidMount() {
     this.setTile();
     window.addEventListener('resize', this.setTile);
@@ -129,7 +135,7 @@ class App extends Component {
         >
           Source Code
         </a>
-        <Popup showInstall={this.state.showInstall}  />
+        <Popup currGame={this.state.currGame} closePopup={this.closePopup} showInstall={this.state.showInstall}  />
       </div>
     );
   }
