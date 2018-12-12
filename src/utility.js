@@ -94,7 +94,7 @@ export function randomizeBoardUtility (state) {
 export function showInstallUtility () {
   console.log(window.navigator.userAgent.toLowerCase());
   console.log(window.navigator);
-  if (/iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase() && !('standalone' in window.navigator) && !(window.navigator.standalone))) {
+  if (/iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase()) && !('standalone' in window.navigator) && !(window.navigator.standalone)) {
    return true
   } else {
     return false
