@@ -4,6 +4,7 @@ import Tile from './tile/tile';
 import Splash from './splash/splash';
 import classes from './app.module.css';
 import * as utility from './utility';
+import Popup from './popup/popup';
 
 //`./img/${props.item.item}`
 
@@ -83,6 +84,10 @@ class App extends Component {
   componentDidMount() {
     this.setTile();
     window.addEventListener('resize', this.setTile);
+    this.setState(state=>{
+      return {...state, showInstall : utility.showInstallUtility()}
+    })
+   
   }
 
   componentWillUnmount() {
@@ -124,6 +129,7 @@ class App extends Component {
         >
           Source Code
         </a>
+        <Popup showInstall={this.state.showInstall}  />
       </div>
     );
   }

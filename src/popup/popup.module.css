@@ -1,0 +1,11 @@
+.show{
+  position: fixed;
+  bottom: 0;
+  display: block;
+}
+
+.hide{
+  position: fixed;
+  bottom: 0;
+  display: none;
+}
