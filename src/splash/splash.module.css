@@ -1,26 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise');
+
 .splash {
   width: 100vw;
   height: 120vh;
   position: fixed;
   top: -20vh;
-  background-color: rgb(209, 181, 185);
+  background-image: linear-gradient(to bottom right, rgb(0, 178, 202) 0%, rgb(125, 207, 182) 35%,rgb(125, 207, 182) 65%,rgb(0, 178, 202) 100%);
   z-index: 100;
   transform: translateY(-100vh);
-  transition: all .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .shown {
   transform: translateY(0);
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) .3s;
+  transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) .3s;
 }
 
 h1 {
   margin: 0;
-  margin-top: 8vh;
-  font-family: sans-serif;
-  font-size: 10vmin;
+  margin-top: 10vh;
+  font-family: 'Waiting for the Sunrise', cursive;
+  font-size: 13vmin;
   font-weight: 100;
-  color: white;
+  color: #1D4E89;
 
 }
 
@@ -40,7 +42,7 @@ h3 {
   font-weight: 150;
   color: white;
   margin-bottom: .5vmin;
-  margin-top: 1w;
+  margin-top: 1vw;
 }
 
 .center {
@@ -56,9 +58,10 @@ h3 {
 }
 
 .start {
+  cursor: pointer;
   margin-top: 5vmin;
   width: 60vmin;
-  background-color: rgb(204, 149, 30);
+  background-color: #F79256;
   height: 15vmin;
   display: flex;
   justify-content: center;
@@ -78,6 +81,7 @@ h3 {
 }
 
 .incButton {
+  cursor: pointer;
   color: white;
   font-size: 8vmin;
   font-weight: 200;
@@ -85,11 +89,11 @@ h3 {
   height: 20vmin;
   width: 15vmin;
   border-radius: 3px;
-  background-color: rgb(56, 192, 192);
+  background-color: #00B2CA;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 15px #777;
+  box-shadow: 0 0 15px #1D4E89;
   border: 1px solid #aaa;
   transform: translateY(0);
   transition: all .4s ease-out;
@@ -123,7 +127,7 @@ h3 {
 }
 
 .display {
-  color: #555;
+  color: #1D4E89;
   font-weight: 100;
   border-radius: 3px;
   background-color: white;

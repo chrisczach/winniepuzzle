@@ -13,7 +13,7 @@ const Splash = props => {
       }
     >
       <div className={classes.center}>
-        <h1>Winnie Shuffle!!</h1>
+        <h1>Winnie Shuffle!</h1>
         {props.win && <h2>You Win!</h2>}
 
         <h3>Select Level</h3>

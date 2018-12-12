@@ -1,12 +1,15 @@
 .main {
   position: relative;
-  background-color: rgb(209, 181, 185);
+  background-image: linear-gradient(to bottom right,rgb(125, 207, 182) 0%,rgb(0, 178, 202) 50%, rgb(125, 207, 182) 100%);
   width: 100vw;
   height: 100vh;
 }
-
+/**/
 
 .reset {
+  font-weight: 100;
+  font-family: sans-serif;
+  cursor: pointer;
   width: 12vmin;;
   text-align: center;
   color: white;
@@ -22,9 +25,18 @@ font-size: 6vmin;
 }
 
 .source{
+  font-weight: 100;
+  font-family: sans-serif;
+  text-decoration: none;
+  cursor: pointer;
   z-index: 1;
   position: absolute;
   bottom: 1vmin;
   right: 1vmin;
+  text-align: center;
+  color: white;
+  background-color: #888;
+  font-size: 2vmin;
+  padding: .5vmin 1vmin;
 }
 
