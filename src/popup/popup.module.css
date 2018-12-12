@@ -13,19 +13,22 @@
   justify-content: center;
   z-index: 2;
 }
-.popup::after {
+
+.popup::before {
   content: "";
-  background-color: black;
   height: 5vmin;
   width: 10vmin;
   position: absolute;
   top: 99%;
+  left: 50%;
   z-index: 0;
   -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
 clip-path: polygon(50% 100%, 0 0, 100% 0);
 border-radius: 3px;
 background-color: #ddd;
+transform: translateX(-50%);
 }
+
 
 .show{
 transform: translateY(0);
@@ -41,6 +44,6 @@ transition: all .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 img {
-  display: inline-block;
-  display: float;
+  display: inline;
+  transform: translateY(-25%)
 }
