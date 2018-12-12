@@ -11,7 +11,7 @@
   box-shadow: 0px 0px 20px #888;
   display: flex;
   justify-content: center;
-  z-index: 2;
+  z-index: 20;
 }
 
 .popup::before {
@@ -21,7 +21,7 @@
   position: absolute;
   top: 99%;
   left: 50%;
-  z-index: 0;
+  z-index: 10;
   -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
 clip-path: polygon(50% 100%, 0 0, 100% 0);
 border-radius: 3px;
@@ -33,7 +33,7 @@ transform: translateX(-50%);
 .show{
 transform: translateY(0);
 filter: blur(0) opacity(1);
-transition: all .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+transition: all .8s cubic-bezier(0.175, 0.885, 0.32, 1.275) .5s;
 }
 
 
@@ -46,4 +46,17 @@ transition: all .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 img {
   display: inline;
   transform: translateY(-25%)
+}
+
+.close {
+  filter: opacity(.3);
+  font-size: 4vmin;
+  position: fixed;
+  color: #aaa;
+  top: 2vmin;
+  right: 2vmin;
+  background-size: contain;
+  width: 3vmin;
+  height: 3vmin;
+  background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjRweCIgdmVyc2lvbj0iMS4xIiBoZWlnaHQ9IjY0cHgiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNjQgNjQiPgogIDxnPgogICAgPHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTI4Ljk0MSwzMS43ODZMMC42MTMsNjAuMTE0Yy0wLjc4NywwLjc4Ny0wLjc4NywyLjA2MiwwLDIuODQ5YzAuMzkzLDAuMzk0LDAuOTA5LDAuNTksMS40MjQsMC41OSAgIGMwLjUxNiwwLDEuMDMxLTAuMTk2LDEuNDI0LTAuNTlsMjguNTQxLTI4LjU0MWwyOC41NDEsMjguNTQxYzAuMzk0LDAuMzk0LDAuOTA5LDAuNTksMS40MjQsMC41OWMwLjUxNSwwLDEuMDMxLTAuMTk2LDEuNDI0LTAuNTkgICBjMC43ODctMC43ODcsMC43ODctMi4wNjIsMC0yLjg0OUwzNS4wNjQsMzEuNzg2TDYzLjQxLDMuNDM4YzAuNzg3LTAuNzg3LDAuNzg3LTIuMDYyLDAtMi44NDljLTAuNzg3LTAuNzg2LTIuMDYyLTAuNzg2LTIuODQ4LDAgICBMMzIuMDAzLDI5LjE1TDMuNDQxLDAuNTljLTAuNzg3LTAuNzg2LTIuMDYxLTAuNzg2LTIuODQ4LDBjLTAuNzg3LDAuNzg3LTAuNzg3LDIuMDYyLDAsMi44NDlMMjguOTQxLDMxLjc4NnoiLz4KICA8L2c+Cjwvc3ZnPgo=);
 }
