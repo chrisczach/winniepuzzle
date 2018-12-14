@@ -33,18 +33,12 @@ export function moveTileUtility(state, index) {
 }
 
 export function checkBoardUtility(state) {
-  let win = true;
-  let currGame = state.currGame;
-  state.board.forEach((e, i) => {
-    const homeIndex = (e.imageRow - 1) * state.boardSize + (e.imageColumn - 1);
-    if (homeIndex !== i && e.imageRow !== 'X') {
-      win = false;
-    }
-  });
-  if (win) {
-    currGame = false;
-  }
-  return { ...state, win, currGame };
+  const win = state.board.every(
+    (e, i) =>
+      (e.imageRow - 1) * state.boardSize + (e.imageColumn - 1) === i ||
+      e.imageRow === 'X'
+  );
+  return { ...state, win, currGame: !win };
 }
 
 export function setBoardUtility(state) {
@@ -106,9 +100,10 @@ export function showInstallUtility() {
   // } else {
   //   return false
   // }
-  const iPhone = /iphone|ipad|ipod/.test( window.navigator.userAgent.toLowerCase() );
-  const isStandalone = window.navigator.standalone ;
+  const iPhone = /iphone|ipad|ipod/.test(
+    window.navigator.userAgent.toLowerCase()
+  );
+  const isStandalone = window.navigator.standalone;
   const showInstall = iPhone && !isStandalone;
-  return showInstall
-  
+  return showInstall;
 }
