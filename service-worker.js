@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/winniepuzzle/precache-manifest.b7a9bd4f3a7cebbbe809725e54b61f0d.js"
+  "/winniepuzzle/precache-manifest.60911591c60119d6678fb1169059aebe.js"
 );
 
 workbox.clientsClaim();
