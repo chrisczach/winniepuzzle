@@ -4,10 +4,12 @@
   "homepage": ".",
   "private": true,
   "dependencies": {
-    "react": "^16.6.3",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react": "^16.9.0",
     "react-dom": "^16.6.3",
     "react-scripts": "3.1.1",
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
